@@ -12,6 +12,7 @@ def main():
     except:
         print("Error: Input format: <First Hand> <Second Hand> ")
         raise
+
     # convert string to char list
     firsthand = list(firsthand)
     secondhand = list(secondhand)
@@ -56,8 +57,6 @@ def main():
     else:
         print("Second hand wins!")
 
-def card_sort():
-    return CARDS.index()
 
 def ranking(x):
     # x: a dict
