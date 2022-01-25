@@ -16,10 +16,15 @@ The hands are ranked in following order from best to the worst: Four of a kind, 
 If for example the hand has pairs with the same card AA346 AA258 the latter one wins because of the higher high card. A tie can also be possible. Here are some hands and the right outcomes:
 
 KTQTT AAQQT => First hand wins!
+
 AKKAA 222T2 => Second hand wins!
+
 A3A46 K32KT => First hand wins!
+
 A3A46 258AA => Second hand wins!
+
 TA982 98TA2 => It’s a tie!
+
 32233 A4A5A => First hand wins!
 
 # This is not a perfect game!
