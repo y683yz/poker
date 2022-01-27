@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 # By Yongzhao Yang 2022.01.25
 
 CARDS = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
@@ -40,19 +39,36 @@ def main():
     first_ranks, first_cards = ranking(first_pair)
     second_ranks, second_cards = ranking(second_pair)
 
+    # total hand ranking
+    total_hand_ranking_first = sum(first_ranks)
+    total_hand_ranking_second = sum(second_ranks)
+
+    # total cards ranking
+    total_card_ranking_first = sum(first_cards)
+    total_card_ranking_second = sum(second_cards)
+
+    # the highest card ranking in both side
+    highest_card_first = CARDS.index(first[num_first.index(max(num_first))])
+    highest_card_second = CARDS.index(second[num_second.index(max(num_second))])
+
+    # the highest ranking in hands
+    highest_hand_ranking_first = max(num_first)
+    highest_hand_ranking_second = max(num_second)
+
     # get output
-    # if ranking is high
-    if sum(first_ranks) > sum(second_ranks):
+
+    if total_hand_ranking_first > total_hand_ranking_second:
         print("First hand wins!")
-    elif sum(first_ranks) == sum(second_ranks):
-        if CARDS.index(first[num_first.index(max(num_first))]) > CARDS.index(second[num_second.index(max(num_second))]):
+    elif total_hand_ranking_first == total_hand_ranking_second:
+        if highest_hand_ranking_first > highest_hand_ranking_second:
             print("- First hand wins!")
-        elif CARDS.index(first[num_first.index(max(num_first))]) == CARDS.index(second[num_second.index(max(num_second))]):
+        elif highest_card_first == highest_card_second:
+            # remove card with highest ranking
             first_cards.remove(first_cards[num_first.index(max(num_first))])
             second_cards.remove(second_cards[num_second.index(max(num_second))])
-            if sum(first_cards) > sum(second_cards):
+            if total_card_ranking_first > total_card_ranking_second:
                 print("- First hand wins!")
-            elif sum(first_cards) == sum(second_cards):
+            elif total_card_ranking_first == total_card_ranking_second:
                 print("It’s a tie!")
             else:
                 print("- Second hand wins!")
@@ -69,7 +85,9 @@ def ranking(x):
     rank_definition = {'4': 2000, '3': 1000, '2': 200, '1': 1}
     ranks = list(rank_definition[str(item)] for item in values)
     cards_ranks = [CARDS.index(item)+1 for item in keys]
-    return ranks, cards_ranks
+    #final_rank = [*map(mul,ranks,cards_ranks)]
+    final_rank = [a + b for a, b in zip(ranks, cards_ranks)]
+    return final_rank, cards_ranks
 
 if __name__ == '__main__':
     import sys, re, os
