@@ -27,4 +27,4 @@ TA982 98TA2 => It’s a tie!
 
 32233 A4A5A => First hand wins!--->  *This is a wrong answer here*  --> It should be "Second hand wins!"
 
-# This is not a perfect game!
+# This is not a perfect game, as there is no card sets defined.
