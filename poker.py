@@ -10,9 +10,8 @@ def main():
         # get arguments
         firsthand = str(sys.argv[1])
         secondhand = str(sys.argv[2])
-    except:
+    finally:
         print("Error: Input format: <First Hand> <Second Hand> ")
-        raise
 
     # convert string to char list
     firsthand = list(firsthand)
@@ -35,63 +34,49 @@ def main():
     first_pair = {item:num_first[first.index(item)] for item in first}
     second_pair = {item: num_second[second.index(item)] for item in second}
 
-    # get ranking
+    # get hands ranking
     first_ranks, first_cards = ranking(first_pair)
     second_ranks, second_cards = ranking(second_pair)
 
-    # total hand ranking
-    total_hand_ranking_first = sum(first_ranks)
-    total_hand_ranking_second = sum(second_ranks)
-
-    # total cards ranking
-    total_card_ranking_first = sum(first_cards)
-    total_card_ranking_second = sum(second_cards)
-
-    # the highest card ranking in both side
-    highest_card_first = CARDS.index(first[num_first.index(max(num_first))])
-    highest_card_second = CARDS.index(second[num_second.index(max(num_second))])
-
-    # the highest ranking in hands
-    highest_hand_ranking_first = max(num_first)
-    highest_hand_ranking_second = max(num_second)
-
-    # get output
-
-    if total_hand_ranking_first > total_hand_ranking_second:
+    # get output --->>
+    if max(first_ranks) > max(second_ranks):
         print("First hand wins!")
-    elif total_hand_ranking_first == total_hand_ranking_second:
-        if highest_hand_ranking_first > highest_hand_ranking_second:
-            print("- First hand wins!")
-        elif highest_card_first == highest_card_second:
-            # remove card with highest ranking
-            first_cards.remove(first_cards[num_first.index(max(num_first))])
-            second_cards.remove(second_cards[num_second.index(max(num_second))])
-            if total_card_ranking_first > total_card_ranking_second:
-                print("- First hand wins!")
-            elif total_card_ranking_first == total_card_ranking_second:
+    elif max(first_ranks) < max(second_ranks):
+        print("Second hand wins!")
+    else:
+        # remove max ranking
+        first_ranks.remove(first_ranks[first_ranks.index(max(first_ranks))])
+        second_ranks.remove(second_ranks[second_ranks.index(max(second_ranks))])
+        if max(first_ranks) == max(second_ranks):
+            # remove max ranking
+            first_ranks.remove(first_ranks[first_ranks.index(max(first_ranks))])
+            second_ranks.remove(second_ranks[second_ranks.index(max(second_ranks))])
+            if max(first_ranks) > max(second_ranks):
+                print("First hand wins!")
+            elif max(first_ranks) == max(second_ranks):
                 print("It’s a tie!")
             else:
-                print("- Second hand wins!")
+                print("Second hand wins!")
+        elif max(first_ranks) > max(second_ranks):
+            print("First hand wins!")
         else:
-            print("- Second hand wins!")
-    else:
-        print("Second hand wins!")
+            print("Second hand wins!")
 
 
 def ranking(x):
     # x: a dict
     keys = list(x)
     values = list(x.values())
-    rank_definition = {'4': 2000, '3': 1000, '2': 200, '1': 1}
+    rank_definition = {'4': 3000, '3': 2000, '2': 1000, '1': 1}
     ranks = list(rank_definition[str(item)] for item in values)
     cards_ranks = [CARDS.index(item)+1 for item in keys]
-    #final_rank = [*map(mul,ranks,cards_ranks)]
+    # final_rank = [*map(mul,ranks,cards_ranks)]
     final_rank = [a + b for a, b in zip(ranks, cards_ranks)]
     return final_rank, cards_ranks
 
+
 if __name__ == '__main__':
     import sys, re, os
-    from operator import mul
     main()
 
 
