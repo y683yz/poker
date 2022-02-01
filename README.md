@@ -11,7 +11,13 @@ The algorithm will say that the first hand wins (two queens vs. ace as high card
 
 python poker.py KQ23Q TA3J7 => First hand wins!
 
-The hands are ranked in following order from best to the worst: Four of a kind, Full House, Triples, Two pairs, Pair, Highest card. 
+The hands are ranked in following order from best to the worst: 
+A. Four of a kind, 
+B. Full House, 
+C. Triples, 
+D. Two pairs, 
+E. Pair, 
+F Highest card. 
 
 If for example the hand has pairs with the same card AA346 AA258 the latter one wins because of the higher high card. A tie can also be possible. Here are some hands and the right outcomes:
 
