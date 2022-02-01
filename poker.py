@@ -81,7 +81,7 @@ def main():
         if sum(first_ranks) in range(1007, 1038):    # two pairs
             if max(first_ranks) < max(second_ranks):
                 print("D1-Second hand wins!")
-            elif max(first_ranks) == max(second_ranks): # first pair
+            elif max(first_ranks) == max(second_ranks):  # first pair
                 # remove max ranking
                 first_ranks.remove(first_ranks[first_ranks.index(max(first_ranks))])
                 second_ranks.remove(second_ranks[second_ranks.index(max(second_ranks))])
@@ -95,20 +95,22 @@ def main():
                         print("D2-It's a tie!")
                     elif max(first_ranks) > max(second_ranks):
                         print("D2-First hand wins!")
-            else:
+                elif max(first_ranks) < max(second_ranks):  # pair
+                    print("D3-Second hand wins!")
+                else:  # pair
+                    print("D3-First hand wins!")
+            else:    # first pair
                 print("D1-First hand wins!")
         elif sum(first_ranks) > 1038:  # full house, four of a kind. triple
-            print("D3-First hand wins!")
+            print("D0-First hand wins!")
         else:           # pair, highest card
-            print("D3-Second hand wins!")
+            print("D0-Second hand wins!")
 
-    elif sum(second_ranks) in range(501, 550):    # pair
-        if sum(first_ranks) in range(501, 550):    # pair
+    elif sum(second_ranks) in range(501, 560):    # pair
+        if sum(first_ranks) in range(501, 560):    # pair
             if max(first_ranks) < max(second_ranks):
                 print("E1-Second hand wins!")
-            else:
-                print("E1-First hand wins!")
-            if max(first_ranks) == max(second_ranks):
+            elif max(first_ranks) == max(second_ranks):
                 # remove max ranking
                 first_ranks.remove(first_ranks[first_ranks.index(max(first_ranks))])
                 second_ranks.remove(second_ranks[second_ranks.index(max(second_ranks))])
@@ -120,7 +122,9 @@ def main():
                     print("E2-Second hand wins!")
                 else:
                     print("E2-First hand wins!")
-        elif sum(first_ranks) > 1007:  # full house, four of a kind. triple, two pairs
+            else:
+                print("E1-First hand wins!")
+        elif sum(first_ranks) > 560:  # full house, four of a kind. triple, two pairs
             print("E3-First hand wins!")
         elif sum(first_ranks) < 60:  # highest cards
             print("E3-Second hand wins!")
